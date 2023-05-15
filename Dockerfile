@@ -4,7 +4,8 @@ FROM ruby:2.7-alpine
 RUN apk update && apk add --no-cache \
        libxml2 \
        libxslt \
-       postgresql-libs
+       postgresql-libs \
+       nodejs
 
 # Install build dependencies, the zendesk_apps_tools gem, and remove build dependencies
 RUN apk add --no-cache --virtual .build-deps \
@@ -12,7 +13,6 @@ RUN apk add --no-cache --virtual .build-deps \
        libxml2-dev \
        libxslt-dev \
        postgresql-dev \
-       nodejs \
        npm \
     && gem install zendesk_apps_tools \
     && apk del .build-deps
